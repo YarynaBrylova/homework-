@@ -6,6 +6,13 @@ const submitTask = document.getElementById('task-submit');
 const chbox = document.getElementById('checkbox');
 const lst = document.createElement('ol');
 lstBlock.appendChild(lst);
+let currentStorage = [];
+
+    // localStorage.getItem('task');
+
+
+
+
 
 function createTask() {
     const task = document.createElement('li');
@@ -13,11 +20,13 @@ function createTask() {
     if (taskContent.trim() !== '') {
         task.textContent = taskContent;
         lst.appendChild(task);
+        currentStorage.push(JSON.stringify(taskContent));
         importantTask(task);
         taskContent.onclick = function() {
             inpt.value = '';
         }();
-    } 
+    }
+    localStorage.setItem('task', currentStorage);
 }
 
 function importantTask(task) {
@@ -51,10 +60,9 @@ createLst.addEventListener('click', function() {
 
 
 submitTask.addEventListener('click', createTask);
-lst/addEventListener('click', doneTask);
+// localStorage.getItem(currentStorage);
+lst.addEventListener('click', doneTask);
 lst.addEventListener('dblclick', removeTask);
-
-
 
 
 
